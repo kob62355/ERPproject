@@ -43,7 +43,7 @@
                     <th scope="row">{{$receipt->created_at}}</th>
                     <td>{{$receipt->rt_id}}</td>
                     <td>{{$receipt->partner_name}}</td>
-                    <td>{{number_format($receipt->sum)}}</td>
+                    <td>{{number_format($receipt->sum,2)}}</td>
                     @if ($receipt->status_id >= 4)
                         <td><span class="badge badge-success py-2"  style="padding: 5px;font-size: 12px;width: 100%">ชำระเงินแล้ว</span></td>
                     @endif

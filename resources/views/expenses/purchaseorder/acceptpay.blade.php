@@ -93,7 +93,7 @@ function accept(){
                     <th scope="row">{{$purchaseorder->po_id}}</th>
                     <td>{{$purchaseorder->created_at}}</td>
                     <td>{{$purchaseorder->partner_name}}</td>
-                    <td>{{number_format($purchaseorder->sum)}}</td>
+                    <td>{{number_format($purchaseorder->sum,2)}}</td>
                     <td><a style="color: white" class="btn btn-secondary mr-2"  data-toggle="modal" data-target="#ModalPreview" onclick="preview({{$purchaseorder->expenses_id}})">อนุมัติใบสั่งซื้อ</a></td>
                     </tr>
                     @endforeach 

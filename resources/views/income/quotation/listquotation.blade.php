@@ -61,7 +61,7 @@
                     <th scope="row">{{$quotation->created_at}}</th>
                     <td>{{$quotation->qt_id}}</td>
                     <td>{{$quotation->partner_name}}</td>
-                    <td>{{number_format($quotation->sum)}}</td>
+                    <td>{{number_format($quotation->sum.2)}}</td>
                     @if ($quotation->status_id == 1)
                         <td><span class="badge badge-danger py-2" style="padding: 5px;font-size: 12px;width: 100%">ยังไม่ได้อนุมัติ</span></td>
                     @endif
@@ -112,7 +112,7 @@
                             <th scope="row">{{$income->income_id}}</th>
                             <td>{{$income->created_at}}</td>
                             <td>{{$income->partner_name}}</td>
-                            <td>{{number_format($income->sum)}}</td>
+                            <td>{{number_format($income->sum,2)}}</td>
                             <td><a href="{{url('income/quotation/'.$income->income_id)}}" class="btn btn-secondary mr-2">สร้างใบเสนอราคา</a></td>
                             </tr>
                             

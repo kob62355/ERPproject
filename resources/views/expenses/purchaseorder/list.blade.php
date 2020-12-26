@@ -64,7 +64,7 @@
                   <th scope="row">{{$purchaseorder->created_at}}</th>
                   <td>{{$purchaseorder->po_id}}</td>
                   <td>{{$purchaseorder->partner_name}}</td>
-                  <td>{{number_format($purchaseorder->sum)}}</td>
+                  <td>{{number_format($purchaseorder->sum,2)}}</td>
                   
                   @if ($purchaseorder->status_id == 1)
                       <td><span class="badge badge-danger py-2" style="padding: 5px;font-size: 12px;width: 100%">ยังไม่ได้อนุมัติ</span></td>

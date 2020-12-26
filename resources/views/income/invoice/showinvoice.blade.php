@@ -66,16 +66,16 @@
           <th scope="row" style="width: 10%">{{$i}}</th>
           <td style="width: 40%">{{$invoice->product_name}}</td>
           <td style="text-align: right">{{$invoice->amount}}</td>
-          <td style="text-align: right">{{number_format($invoice->saleprice)}}</td>
-          <td style="text-align: right">{{number_format($invoice->saleprice * $invoice->amount)}}</td>
+          <td style="text-align: right">{{number_format($invoice->saleprice,2)}}</td>
+          <td style="text-align: right">{{number_format($invoice->saleprice * $invoice->amount,2)}}</td>
           </tr>
           @endforeach
           @foreach ($sums as $sum)
           <tr>
-          <td rowspan="3" colspan="3">ช่องทางการชำระเงิน </td><td>VATABLE</td><td style="text-align: right">{{number_format($sum->sum - ($sum->sum * 7/100))}}</td>
+          <td rowspan="3" colspan="3">ช่องทางการชำระเงิน </td><td>VATABLE</td><td style="text-align: right">{{number_format($sum->sum - ($sum->sum * 7/100),2)}}</td>
           </tr>
           <tr>
-              <td>VAT 7%</td><td style="text-align: right">{{number_format($sum->sum * 7/100)}}</td>
+              <td>VAT 7%</td><td style="text-align: right">{{number_format($sum->sum * 7/100,2)}}</td>
           </tr>
           <tr>
             <td>ราคารวมทั้งสิ้น</td><td style="text-align: right">{{number_format($sum->sum)}}</td>

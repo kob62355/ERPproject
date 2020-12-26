@@ -36,7 +36,7 @@
                 <th scope="row">{{$income->created_at}}</th>
                 <td>{{$income->income_id}}</td>
                 <td>{{$income->partner_name}}</td>
-                <td>{{number_format($income->sum)}}</td>
+                <td>{{number_format($income->sum,2)}}</td>
                 @if($income->status_id <= 3)
                 <td><span class="badge badge-danger py-2" style="padding: 5px;font-size: 12px;width: 100%">{{$income->status_name}}</span></td>
                 @endif

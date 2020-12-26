@@ -92,7 +92,7 @@ function accept(){
                     <th scope="row">{{$quotation->created_at}}</th>
                     <td>{{$quotation->qt_id}}</td>
                     <td>{{$quotation->partner_name}}</td>
-                    <td>{{number_format($quotation->sum)}}</td>
+                    <td>{{number_format($quotation->sum,2)}}</td>
                     <td><a style="color: white" class="btn btn-secondary mr-2"  data-toggle="modal" data-target="#ModalPreviewQuotation" onclick="preview({{$quotation->income_id}})">อนุมัติใบเสนอราคา</a></td>
                     
                     </tr>

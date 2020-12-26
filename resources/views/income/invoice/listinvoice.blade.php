@@ -42,7 +42,7 @@
                     <th scope="row">{{$invoice->created_at}}</th>
                     <td>{{$invoice->inv_id}}</td>
                     <td>{{$invoice->partner_name}}</td>
-                    <td>{{number_format($invoice->sum)}}</td>
+                    <td>{{number_format($invoice->sum,2)}}</td>
                     @if ($invoice->status_id <= 3)
                         <td><span class="badge badge-danger py-2" style="padding: 5px;font-size: 12px;width: 100%">ยังไม่ได้ชำระเงิน</span></td>
                     @endif

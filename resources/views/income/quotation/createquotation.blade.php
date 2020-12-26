@@ -36,7 +36,7 @@
                     <th scope="row">{{$income->created_at}}</th>
                     <td>{{$income->income_id}}</td>
                     <td>{{$income->partner_name}}</td>
-                    <td>{{number_format($income->sum)}}</td>
+                    <td>{{number_format($income->sum,2)}}</td>
                     <td><a style="color: white" class="btn btn-secondary mr-2"  data-toggle="modal" data-target="#ModalMakeQuotation" onclick="preview({{$income->income_id}})">สร้างใบเสนอราคา</a><button class="btn btn-danger" >ยกเลิก</button></td>
                     </tr>
                     

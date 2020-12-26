@@ -36,7 +36,7 @@
                     <th scope="row">{{$invoice->created_at}}</th>
                     <td>{{$invoice->inv_id}}</td>
                     <td>{{$invoice->partner_name}}</td>
-                    <td>{{number_format($invoice->sum)}}</td>
+                    <td>{{number_format($invoice->sum,2)}}</td>
                     <td><a style="color: white" class="btn btn-secondary mr-2"  data-toggle="modal" data-target="#ModalMakeQuotation" onclick="preview({{$invoice->income_id}})">ออกใบเสร็จ</a><button class="btn btn-danger" >ยกเลิก</button></td>
                     </tr>
                     

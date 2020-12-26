@@ -36,7 +36,7 @@
                     <th scope="row">{{$expenses->expenses_id}}</th>
                     <td>{{$expenses->created_at}}</td>
                     <td>{{$expenses->partner_name}}</td>
-                    <td>{{number_format($expenses->sum)}}</td>
+                    <td>{{number_format($expenses->sum,2)}}</td>
                     <td><a style="color: white" class="btn btn-secondary mr-2"  data-toggle="modal" data-target="#ModalMakepurchaseorder" onclick="preview({{$expenses->expenses_id}})">สร้างใบสั่งซื้อ</a><button class="btn btn-danger" >ยกเลิก</button></td>
                     </tr>
                     

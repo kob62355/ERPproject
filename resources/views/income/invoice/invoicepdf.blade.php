@@ -82,19 +82,19 @@
             <th class="number" scope="row" style="width: 10%">{{$i}}</th>
             <td style="width: 40%">{{$invoice->product_name}}</td>
             <td class="number">{{$invoice->amount}}</td>
-            <td class="number">{{number_format($invoice->saleprice)}}</td>
-            <td class="number">{{number_format($invoice->saleprice * $invoice->amount)}}</td>
+            <td class="number">{{number_format($invoice->saleprice,2)}}</td>
+            <td class="number">{{number_format($invoice->saleprice * $invoice->amount,2)}}</td>
           </tr>
           @endforeach
           @foreach ($sums as $sum)
           <tr>
-            <td rowspan="3" colspan="3">ช่องทางการชำระเงิน </td><td>VATABLE</td><td class="number">{{number_format($sum->sum - ($sum->sum * 7/100))}}</td>
+            <td rowspan="3" colspan="3">ช่องทางการชำระเงิน </td><td>VATABLE</td><td class="number">{{number_format($sum->sum - ($sum->sum * 7/100),2)}}</td>
             </tr>
             <tr>
-                <td>VAT 7%</td><td class="number">{{number_format($sum->sum * 7/100)}}</td>
+                <td>VAT 7%</td><td class="number">{{number_format($sum->sum * 7/100,2)}}</td>
             </tr>
             <tr>
-              <td>ราคารวมทั้งสิ้น</td><td class="number">{{number_format($sum->sum)}}</td>
+              <td>ราคารวมทั้งสิ้น</td><td class="number">{{number_format($sum->sum,2)}}</td>
         </tr>
           @endforeach
         </tbody>

@@ -230,7 +230,7 @@ function addproduct(productname,productdescription){
                   </td>
                 <td style="width: 15%"><input type="number" name="product_amount[]" class="form-control" id="productamount{{$number}}" value="{{$expenses->amount}}"></td>
                 <td style="width: 15%"><input type="number" name="product_price[]"  class="form-control" id="productprice{{$number}}" value="{{$expenses->saleprice}}"></td>
-                <td style="width: 20%"><a id="sum{{$number}}">{{number_format($expenses->amount * $expenses->saleprice)}}</a><button type="button" class="btn btn-danger btn-remove ml-4" id="buttondel{{$number}}"><i class="fa fa-trash mx-2"></i></button></td>
+                <td style="width: 20%"><a id="sum{{$number}}">{{number_format($expenses->amount * $expenses->saleprice,2)}}</a><button type="button" class="btn btn-danger btn-remove ml-4" id="buttondel{{$number}}"><i class="fa fa-trash mx-2"></i></button></td>
                 </tr>
                 
                 @endforeach
