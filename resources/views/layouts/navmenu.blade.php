@@ -22,7 +22,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               @if($userlevel_id == 1 || $userlevel_id == 2)<a class="dropdown-item" href="{{url("income/list")}}">รายการรายรับ</a>@endif
-              @if($userlevel_id == 1 || $userlevel_id == 2)<a class="dropdown-item" href="{{url("income/quotation/list")}}">ใบสั่งขาย</a>@endif
+              @if($userlevel_id == 1 || $userlevel_id == 2)<a class="dropdown-item" href="{{url("income/quotation/list")}}">ใบเสนอราคา</a>@endif
               @if($userlevel_id == 1 || $userlevel_id == 2 || $userlevel_id == 3)<a class="dropdown-item" href="{{url("income/invoice/")}}">ใบวางบิล</a>@endif
               @if($userlevel_id == 1 || $userlevel_id == 3)<a class="dropdown-item" href="{{url("income/receipt/")}}">ใบเสร็จ</a>@endif
           

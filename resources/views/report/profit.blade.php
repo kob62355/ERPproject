@@ -21,7 +21,7 @@
                 <a class="nav-link" href="{{url('report/profit/1month')}}">เดือนที่ผ่านมา</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{url('report/profit/3month')}}">3 เดือน</a>
+              <a class="nav-link" href="{{url('report/profit/3month')}}">3 เดือนที่ผ่านมา</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{url('report/profit/custom')}}">กำหนดเอง</a>
@@ -29,6 +29,7 @@
           </ul>
         <div class="mx-5 mt-5">
         <h1 style="text-align: center">งบกำไรขาดทุน</h1>
+        <p style="text-align: center;font-size: 18px;" >ระยะเวลาตั้งแต่เปิดร้านจนถึงปัจจุบัน</p>
         <p style="text-align: left;font-size: 18px;" ><b>รายได้</b></p>
         <div class="row">
             <div class="col-6"><label style="text-align: left;font-size: 18px;" class="ml-5" >รายได้จากการขาย</label></div><div class="col-3"></div><div class="col-3"><label style="text-align: right;font-size: 18px;float: right; ">@foreach ($incomes as $income){{number_format($income->sumincome)}}@endforeach</label></div>

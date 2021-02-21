@@ -42,14 +42,14 @@ function preview(income_id){
                 var vatable = netprice;
                 
                 $("#tbody").append("<tr><td rowspan=\"3\" colspan=\"3\">หมายเหตุ : </td><td>VATABLE</td><td>"+numberWithCommas(vatable)+"</td></tr><tr><td>VAT 7%</td><td>"+ numberWithCommas(vat) +"</td></tr><tr><td>ราคารวมทั้งสิ้น</td><td>"+numberWithCommas(netprice + vat)+"</td></tr>");
-                $("#modalfooter").append("<a onclick=\"return accept()\" href=\"{{url('income/quotation/accept/')}}/"+income_id+"\" class=\"btn btn-primary mr-2\">อนุมัติใบสั่งขาย</a><button type=\"button\" class=\"btn btn-secondary cancel\" data-dismiss=\"modal\">ยกเลิก</button>");
+                $("#modalfooter").append("<a onclick=\"return accept()\" href=\"{{url('income/quotation/accept/')}}/"+income_id+"\" class=\"btn btn-primary mr-2\">อนุมัติใบเสนอราคา</a><button type=\"button\" class=\"btn btn-secondary cancel\" data-dismiss=\"modal\">ยกเลิก</button>");
                
             }
     });
 }
 function accept(){
   var txt;
-  var r = confirm("ยืนยันอนุมัติใบสั่งขาย");
+  var r = confirm("ยืนยันอนุมัติใบเสนอราคา");
   if (r == true) {
     txt = "ยืนยัน";
     return true;
@@ -79,7 +79,7 @@ function accept(){
                 <thead>
                   <tr>
                     <th scope="col">วันที่สร้าง</th>
-                    <th scope="col">รหัสใบสั่งขาย</th>
+                    <th scope="col">รหัสใบเสนอราคา</th>
                     <th scope="col">ชื่อลูกค้า</th>
                     <th scope="col">ยอดสุทธิ</th>
                     <th scope="col"></th>
@@ -93,7 +93,7 @@ function accept(){
                     <td>{{$quotation->qt_id}}</td>
                     <td>{{$quotation->partner_name}}</td>
                     <td>{{number_format($quotation->sum,2)}}</td>
-                    <td><a style="color: white" class="btn btn-secondary mr-2"  data-toggle="modal" data-target="#ModalPreviewQuotation" onclick="preview({{$quotation->income_id}})">อนุมัติใบสั่งขาย</a></td>
+                    <td><a style="color: white" class="btn btn-secondary mr-2"  data-toggle="modal" data-target="#ModalPreviewQuotation" onclick="preview({{$quotation->income_id}})">อนุมัติใบเสนอราคา</a></td>
                     
                     </tr>
                     @endforeach 
@@ -110,7 +110,7 @@ function accept(){
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">อนุมัติใบสั่งขาย</h5>
+              <h5 class="modal-title" id="exampleModalLongTitle">อนุมัติใบเสนอราคา</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -120,7 +120,7 @@ function accept(){
                 <h1 style="text-align: center;" class="mt-5">{{$organization->organization_name}}</h1>
                 <p style="text-align: center;font-size: 18px" >{{$organization->organization_address}}</p>
                 @endforeach
-                <h2 class="mt-5" style="text-align: center">ใบสั่งขาย</h2>
+                <h2 class="mt-5" style="text-align: center">ใบเสนอราคา</h2>
                 <div class="row" class="mx-3 mt-2" >
                     <div class="col-9 border border-dark">
                         <div class="ml-2 my-4">
@@ -134,7 +134,7 @@ function accept(){
                     </div>
                     <div class="col-3 border border-dark ">
                         <div class="ml-2 my-4">
-                            <p style="font-size: 16px" id="quotation_id">หมายเลขใบสั่งขาย :   </p>
+                            <p style="font-size: 16px" id="quotation_id">หมายเลขใบเสนอราคา :   </p>
                             <p style="font-size: 16px" id="quotation_create">วันที่ : </p>
                         </div>
                     </div>

@@ -7,7 +7,7 @@
     <div class="container mt-5 shadow p-3 mb-5 bg-white rounded">
     
         <div class="jumbotron text-center bg-dark text-white">
-            <h1>รายการที่ยังไม่ได้สร้างใบสั่งขาย</h1>
+            <h1>รายการที่ยังไม่ได้สร้างใบเสนอราคา</h1>
             
         </div>
                
@@ -37,7 +37,7 @@
                     <td>{{$income->income_id}}</td>
                     <td>{{$income->partner_name}}</td>
                     <td>{{number_format($income->sum,2)}}</td>
-                    <td><a style="color: white" class="btn btn-secondary mr-2"  data-toggle="modal" data-target="#ModalMakeQuotation" onclick="preview({{$income->income_id}})">สร้างใบสั่งขาย</a><button class="btn btn-danger" >ยกเลิก</button></td>
+                    <td><a style="color: white" class="btn btn-secondary mr-2"  data-toggle="modal" data-target="#ModalMakeQuotation" onclick="preview({{$income->income_id}})">สร้างใบเสนอราคา</a><button class="btn btn-danger" >ยกเลิก</button></td>
                     </tr>
                     
                     @endforeach 
@@ -58,7 +58,7 @@
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">ตัวอย่างใบสั่งขาย</h5>
+                  <h5 class="modal-title" id="exampleModalLongTitle">ตัวอย่างใบเสนอราคา</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -68,7 +68,7 @@
                     <h1 style="text-align: center;" class="mt-5">{{$organization->organization_name}}</h1>
                     <p style="text-align: center;font-size: 18px" >{{$organization->organization_address}}</p>
                     @endforeach
-                    <h2 class="mt-5" style="text-align: center">ใบสั่งขาย</h2>
+                    <h2 class="mt-5" style="text-align: center">ใบเสนอราคา</h2>
                     <div class="row" class="mx-3 mt-2" >
                         <div class="col-9 border border-dark">
                             <div class="ml-2 my-4">
@@ -82,7 +82,7 @@
                         </div>
                         <div class="col-3 border border-dark ">
                             <div class="ml-2 my-4">
-                                <p style="font-size: 16px">หมายเลขใบสั่งขาย :  ## </p>
+                                <p style="font-size: 16px">หมายเลขใบเสนอราคา :  ## </p>
                                 <p style="font-size: 16px">วันที่ : {{date('d-m-Y', time())}} </p>
                             </div>
                         </div>
@@ -165,7 +165,7 @@ function preview(income_id){
                 var vatable = netprice;
                 $("#tbody").append("<tr><td rowspan=\"3\" colspan=\"3\">หมายเหตุ <br> <textarea class=\"form-control\" rows=\"5\" id=\"detail\" style=\"width: 100%\" name=\"detail\"></textarea></td><td>VATABLE</td><td>"+numberWithCommas(vatable)+"</td></tr><tr><td>VAT 7%</td><td>"+ numberWithCommas(vat) +"</td></tr><tr><td>ราคารวมทั้งสิ้น</td><td>"+numberWithCommas(netprice + vat)+"</td></tr>");
                 $("#tbody").append("<input type=\"hidden\" name=\"income_id\" value="+income_id+">");
-                //$("#modalfooter").append("<a onclick=\"return accept()\" href=\"{{url('income/quotation/')}}/"+income_id+"\" class=\"btn btn-primary mr-2\">สร้างใบสั่งขาย</a><button type=\"button\" class=\"btn btn-secondary cancel\" data-dismiss=\"modal\">ยกเลิก</button>");
+                //$("#modalfooter").append("<a onclick=\"return accept()\" href=\"{{url('income/quotation/')}}/"+income_id+"\" class=\"btn btn-primary mr-2\">สร้างใบเสนอราคา</a><button type=\"button\" class=\"btn btn-secondary cancel\" data-dismiss=\"modal\">ยกเลิก</button>");
                 $("#modalfooter").append("<input class=\"btn btn-primary\" type=\"submit\" name=\"submit\"  value=\"ยืนยัน\" ><button type=\"button\" class=\"btn btn-secondary cancel\" data-dismiss=\"modal\">ยกเลิก</button>");
                 
               }
@@ -173,7 +173,7 @@ function preview(income_id){
 }
 function accept(){
   var txt;
-  var r = confirm("ยืนยันการสร้างใบสั่งขาย");
+  var r = confirm("ยืนยันการสร้างใบเสนอราคา");
   if (r == true) {
     txt = "ยืนยัน";
     return true;

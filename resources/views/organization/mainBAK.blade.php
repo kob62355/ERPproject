@@ -17,7 +17,7 @@
                                 <a href="{{ url('income/list') }}" class="btn btn-dark" style="width: 100%;">รายการรายรับ</a>
                                 @endif
                                 @if($userlevel_id == 1 || $userlevel_id == 2)
-                                <a href="{{ url('income/quotation/list')}}" class="btn btn-dark mt-3" style="width: 100%">ใบสั่งขาย 
+                                <a href="{{ url('income/quotation/list')}}" class="btn btn-dark mt-3" style="width: 100%">ใบเสนอราคา 
                                     @foreach ($readytoquotation as $amountquotation)
                                     @foreach ($readytoaccept as $amountaccept)
                                     @if($amountquotation->readytoquotation > 0 || $amountaccept->readytoaccept > 0)
@@ -166,7 +166,7 @@
     
     
            
-           <!-- <a href="{{ url('income/quotation/list')}}" style="color: black" class="list-group-item list-group-item-action">ใบสั่งขาย</a></li>
+           <!-- <a href="{{ url('income/quotation/list')}}" style="color: black" class="list-group-item list-group-item-action">ใบเสนอราคา</a></li>
             <a href="" style="color: black" class="list-group-item list-group-item-action">ใบวางบิล</a></li>
             <a href="" style="color: black" class="list-group-item list-group-item-action">ใบเสร็จ/กำกับภาษี</a></li>!-->
  

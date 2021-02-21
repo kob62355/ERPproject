@@ -11,14 +11,14 @@
     <div class="container mt-5 shadow p-3 mb-5 bg-white rounded">
     
         <div class="jumbotron text-center bg-dark text-white">
-            <h1>ใบสั่งขาย</h1>
+            <h1>ใบเสนอราคา</h1>
         </div>
 
         
                 @foreach ($readytoquotation as $amount)
                     @if($amount->readytoquotation > 0)
                     <div class="alert alert-primary" role="alert">
-                    <p>มีเอกสารที่ยังไม่ได้ออกใบสั่งขายทั้งหมด {{$amount->readytoquotation}} รายการ</p>
+                    <p>มีเอกสารที่ยังไม่ได้ออกใบเสนอราคาทั้งหมด {{$amount->readytoquotation}} รายการ</p>
                     </div> 
                     @endif
                 @endforeach
@@ -26,14 +26,14 @@
         
         <div class="my-2">
           <a href = "{{url('income')}}" class="mr-2 btn btn-secondary"> <i class="fa fa-arrow-left mx-2"></i> ย้อนกลับ</a>
-            <a href="{{url('income/quotation/create')}}" style="color: white" class="btn btn-primary mr-2">+ สร้างใบสั่งขาย  
+            <a href="{{url('income/quotation/create')}}" style="color: white" class="btn btn-primary mr-2">+ สร้างใบเสนอราคา  
               @foreach ($readytoquotation as $amount)
                 @if($amount->readytoquotation > 0)
                   <span class="badge badge-danger"> {{$amount->readytoquotation}} </span>
                 @endif
               @endforeach
             </a> 
-            <a href="{{url('income/quotation/accept')}}" class="btn btn-success mr-2">+ อนุมัติใบสั่งขาย 
+            <a href="{{url('income/quotation/accept')}}" class="btn btn-success mr-2">+ อนุมัติใบเสนอราคา 
               @foreach ($readytoaccept as $amountaccept)
               @if($amountaccept->readytoaccept > 0)
               <span class="badge badge-danger"> {{$amountaccept->readytoaccept}} </span>
@@ -47,7 +47,7 @@
                 <thead>
                   <tr>
                     <th scope="col">วันที่สร้าง</th>
-                    <th scope="col">รหัสใบสั่งขาย</th>
+                    <th scope="col">รหัสใบเสนอราคา</th>
                     <th scope="col">ชื่อลูกค้า</th>
                     <th scope="col">ยอดสุทธิ</th>
                     <th scope="col">สถานะ</th>
@@ -68,7 +68,7 @@
                     @if ($quotation->status_id >= 2)
                         <td><span class="badge badge-success py-2"  style="padding: 5px;font-size: 12px;width: 100%">อนุมัติแล้ว</span></td>
                     @endif
-                    <td><button class="btn btn-secondary mr-2 @if($quotation->status_id >= 2)disabled @endif" @if($quotation->status_id == 1)onclick="location.href='{{url('income/update/'.$quotation->income_id.'')}}'"@endif @if($quotation->status_id >= 2) onclick="alertshow()" @endif @if($quotation->status_id >= 2) aria-disabled="true" tabindex="-1" @endif>แก้ไขรายการ</button><button class="btn btn-primary mr-2" onclick="location.href='{{url('income/quotation/show/'.$quotation->quotation_id.'')}}'">ดูใบสั่งขาย</button></td>
+                    <td><button class="btn btn-secondary mr-2 @if($quotation->status_id >= 2)disabled @endif" @if($quotation->status_id == 1)onclick="location.href='{{url('income/update/'.$quotation->income_id.'')}}'"@endif @if($quotation->status_id >= 2) onclick="alertshow()" @endif @if($quotation->status_id >= 2) aria-disabled="true" tabindex="-1" @endif>แก้ไขรายการ</button><button class="btn btn-primary mr-2" onclick="location.href='{{url('income/quotation/show/'.$quotation->quotation_id.'')}}'">ดูใบเสนอราคา</button></td>
                     </tr>
                     @endforeach 
                    
@@ -113,7 +113,7 @@
                             <td>{{$income->created_at}}</td>
                             <td>{{$income->partner_name}}</td>
                             <td>{{number_format($income->sum,2)}}</td>
-                            <td><a href="{{url('income/quotation/'.$income->income_id)}}" class="btn btn-secondary mr-2">สร้างใบสั่งขาย</a></td>
+                            <td><a href="{{url('income/quotation/'.$income->income_id)}}" class="btn btn-secondary mr-2">สร้างใบเสนอราคา</a></td>
                             </tr>
                             
                             @endforeach 

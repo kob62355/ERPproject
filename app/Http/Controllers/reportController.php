@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\organization;
 use App\report;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class reportController extends Controller
 {
@@ -31,7 +32,11 @@ class reportController extends Controller
         $report = new report();
         $incomes = $report->sumincome1month($id);
         $expensess = $report->sumexpenses1month($id);
-        return view('report/profit1month')->with(compact('organizations','incomes','expensess','userlevel_id'));
+        //$LastMonthBegin = Carbon::now()->startOfMonth()->subMonth()->toDateString();
+        $LastMonthBegin = new Carbon('first day of last month');
+        //$LastMonthEnd = Carbon::now()->EndofMonth()->subMonth()->toDateString();
+        $LastMonthEnd = new Carbon('last day of last month');
+        return view('report/profit1month')->with(compact('organizations','incomes','expensess','userlevel_id','LastMonthBegin','LastMonthEnd'));
     }
     public function profit3month(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
@@ -44,7 +49,9 @@ class reportController extends Controller
         $report = new report();
         $incomes = $report->sumincome3month($id);
         $expensess = $report->sumexpenses3month($id);
-        return view('report/profit3month')->with(compact('organizations','incomes','expensess','userlevel_id'));
+        $Begin = Carbon::now()->startOfMonth()->subMonth(3)->toDateString();
+        $End = Carbon::now()->subMonth(1)->EndofMonth()->toDateString();
+        return view('report/profit3month')->with(compact('organizations','incomes','expensess','userlevel_id','Begin','End'));
     }
 
     public function profitcustom(Request $request)
@@ -75,7 +82,7 @@ class reportController extends Controller
         $report = new report();
         $incomes = $report->sumincomecustom($id,$fromDate,$toDate);
         $expensess = $report->sumexpensescustom($id,$fromDate,$toDate);
-        return view('report/profitcustomshow')->with(compact('organizations','incomes','expensess','userlevel_id'));
+        return view('report/profitcustomshow')->with(compact('organizations','incomes','expensess','userlevel_id','fromDate','toDate'));
     }
 
     public function lineReport(Request $request)

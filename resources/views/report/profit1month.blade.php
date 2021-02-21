@@ -29,6 +29,8 @@
           </ul>
         <div class="mx-5 mt-5">
         <h1 style="text-align: center">งบกำไรขาดทุน</h1>
+        <p style="text-align: center;font-size: 18px;">@foreach ($organizations as $organization){{$organization->organization_name}} @endforeach</p>
+        <p style="text-align: center;font-size: 18px;">{{date('d-m-Y', strtotime($LastMonthBegin))}} ถึง {{date('d-m-Y', strtotime($LastMonthEnd))}}</p>
         <p style="text-align: left;font-size: 18px;" ><b>รายได้</b></p>
         <div class="row">
             <div class="col-6"><label style="text-align: left;font-size: 18px;" class="ml-5" >รายได้จากการขาย</label></div><div class="col-3"></div><div class="col-3"><label style="text-align: right;font-size: 18px;float: right; ">@foreach ($incomes as $income){{number_format($income->sumincome)}}@endforeach</label></div>

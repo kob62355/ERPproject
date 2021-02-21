@@ -20,7 +20,7 @@
         @endif
     </p>
     @endforeach
-    <h2 class="mt-5" style="text-align: center">ใบสั่งขาย</h2>
+    <h2 class="mt-5" style="text-align: center">ใบเสนอราคา</h2>
     <div class="row" class="mx-3 mt-2" >
         <div class="col-8 border border-dark">
             <div class="ml-2 my-4">
@@ -41,7 +41,7 @@
         <div class="col-4 border border-dark ">
             <div class="ml-2 my-4">
                 @foreach ($details as $detail)
-                <p style="font-size: 16px">หมายเลขใบสั่งขาย : {{$detail->qt_id}} </p>
+                <p style="font-size: 16px">หมายเลขใบเสนอราคา : {{$detail->qt_id}} </p>
                 <p style="font-size: 16px">วันที่ : {{date('d-m-Y', strtotime($detail->created_at))}} </p>
                 @endforeach
             </div>
