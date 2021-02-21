@@ -10,29 +10,29 @@ class productController extends Controller
 {
     public function index(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 2 && $userlevel_id != 4 && $userlevel_id != 5){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
         $organization = new organization();
         $organizations = $organization->getorganization($id);
-        return view('product/menu')->with(compact('organizations'));
+        return view('product/menu')->with(compact('organizations','userlevel_id'));
     }
 
     public function insertform(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 2 && $userlevel_id != 4){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
         $organization = new organization();
         $organizations = $organization->getorganization($id);
-        return view('product/insert')->with(compact('organizations'));
+        return view('product/insert')->with(compact('organizations','userlevel_id'));
     }
 
     public function stock(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 2 && $userlevel_id != 4 && $userlevel_id != 5){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -40,11 +40,11 @@ class productController extends Controller
         $organizations = $organization->getorganization($id);
         $product = new product();
         $products = $product->select($id);
-        return view('product/stock')->with(compact('organizations','products'));
+        return view('product/stock')->with(compact('organizations','products','userlevel_id'));
     }
     public function insert(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 2 && $userlevel_id != 4){
             return redirect()->action('organizationController@index');
         }
         request()->validate([
@@ -96,7 +96,7 @@ class productController extends Controller
     public function edit(Request $request , $idproduct){
         
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 2 && $userlevel_id != 4){
             return redirect()->action('productController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -104,12 +104,12 @@ class productController extends Controller
         $organizations = $organization->getorganization($id);
         $product = new product();
         $products = $product->selectedit($id,$idproduct);
-        return view('product/update')->with(compact(['organizations','products']));
+        return view('product/update')->with(compact(['organizations','products','userlevel_id']));
     }
 
     public function updatedo(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 2 && $userlevel_id != 4){
             return redirect()->action('organizationController@index');
         }
         $organization_id = $request->session()->get('organization_id');

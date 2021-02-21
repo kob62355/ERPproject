@@ -14,7 +14,7 @@ class incomeController extends Controller
 {
     public function index(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 2 && $userlevel_id !=3){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -28,11 +28,11 @@ class incomeController extends Controller
         $receipt = new receipt();
         
         $readytoreceipt = $receipt->getReadyToReceipt($id);
-        return view('income/incomemenu')->with(compact('organizations','readytoquotation','readytoaccept','readytoinvoice','readytoreceipt'));
+        return view('income/incomemenu')->with(compact('organizations','readytoquotation','readytoaccept','readytoinvoice','readytoreceipt','userlevel_id'));
     }
     public function update(Request $request , $idincome){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 2){
             return redirect()->action('organizationController@index');
         }
         $userlevel_id = $request->session()->get('userlevel_id');
@@ -49,11 +49,11 @@ class incomeController extends Controller
         $income = new income();
         $incomes = $income->getdata($id,$idincome);
         $income_partner = $income->getpartner($id,$idincome);
-        return view('income/updateincome')->with(compact(['organizations','products','partners','incomes','income_partner']));
+        return view('income/updateincome')->with(compact(['organizations','products','partners','incomes','income_partner','userlevel_id']));
     }
     public function list(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 2){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -61,17 +61,14 @@ class incomeController extends Controller
         $organizations = $organization->getorganization($id);
         $income = new income();
         $incomes = $income->select($id);
-        return view('income/listincome')->with(compact(['organizations','incomes']));
+        return view('income/listincome')->with(compact(['organizations','incomes','userlevel_id']));
     }
     public function insert(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 2){
             return redirect()->action('organizationController@index');
         }
-        $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
-            return redirect()->action('organizationController@index');
-        }
+       
         $id = $request->session()->get('organization_id');
         $organization = new organization();
         $organizations = $organization->getorganization($id);
@@ -79,11 +76,11 @@ class incomeController extends Controller
         $products = $product->select($id);
         $partner = new partner();
         $partners = $partner->select($id);
-        return view('income/addincome')->with(compact(['organizations','products','partners']));
+        return view('income/addincome')->with(compact(['organizations','products','partners','userlevel_id']));
     }
     public function store(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 2){
             return redirect()->action('organizationController@index');
         }
         $data = request()->validate([
@@ -143,7 +140,7 @@ class incomeController extends Controller
 
     public function updatedo(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 2){   
             return redirect()->action('organizationController@index');
         }
         $data = request()->validate([

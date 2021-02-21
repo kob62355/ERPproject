@@ -24,7 +24,7 @@
               <a class="nav-link" href="{{url('report/profit/3month')}}">3 เดือน</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">กำหนดเอง</a>
+              <a class="nav-link" href="{{url('report/profit/custom')}}">กำหนดเอง</a>
             </li>
           </ul>
         <div class="mx-5 mt-5">

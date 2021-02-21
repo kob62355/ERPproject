@@ -12,7 +12,7 @@ class quotationController extends Controller
 {
     public function index(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 2){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -24,12 +24,12 @@ class quotationController extends Controller
         $readytoaccept = $income->getreadytoaccept($id);
         $incomes = $income->selectReadyToQuotation($id);
         $quotations = $quotation->selectQuotation($id);
-        return view('income/quotation/listquotation')->with(compact(['organizations','readytoquotation','incomes','quotations','readytoaccept']));
+        return view('income/quotation/listquotation')->with(compact(['organizations','readytoquotation','incomes','quotations','readytoaccept','userlevel_id']));
     }
 
     public function acceptlist(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 2){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -37,12 +37,12 @@ class quotationController extends Controller
         $quotation = new quotation();
         $organizations = $organization->getorganization($id);
         $quotations = $quotation->listtoaccept($id);
-        return view('income/quotation/acceptquotation')->with(compact(['organizations','quotations']));
+        return view('income/quotation/acceptquotation')->with(compact(['organizations','quotations','userlevel_id']));
     }
 
     public function acceptprocess(Request $request,$idincome){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 2){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -54,7 +54,7 @@ class quotationController extends Controller
 
     public function create(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 2){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -63,12 +63,12 @@ class quotationController extends Controller
         $organizations = $organization->getorganization($id);
         $incomeslist = $income->selectReadyToQuotation($id);
         
-        return view('income/quotation/createquotation')->with(compact(['organizations','incomeslist']));
+        return view('income/quotation/createquotation')->with(compact(['organizations','incomeslist','userlevel_id']));
     }
     
     public function preview(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 2){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -80,7 +80,7 @@ class quotationController extends Controller
 
     public function show(Request $request, $quotation_id){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 2){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -90,7 +90,7 @@ class quotationController extends Controller
         $quotations = $quotation->selectQuotationAll($id,$quotation_id);
         $details = $quotation->selectQuotationRow($id,$quotation_id);
         $sums = $quotation->selectSum($id,$quotation_id);
-        return view('income/quotation/showquotation')->with(compact(['organizations','quotations','details','sums']));
+        return view('income/quotation/showquotation')->with(compact(['organizations','quotations','details','sums','userlevel_id']));
         
     }
 
@@ -98,7 +98,7 @@ class quotationController extends Controller
     
     public function createQuotation(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 2){
             return redirect()->action('organizationController@index');
         }
         $organization_id = $request->session()->get('organization_id');

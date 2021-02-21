@@ -16,7 +16,7 @@ class purchaseorderController extends Controller
 {
     public function index(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 3 && $userlevel_id != 4){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -27,12 +27,12 @@ class purchaseorderController extends Controller
         $readytoacceptpay = $purchaseorder->getreadytoacceptpay($id);
         $purchaseorders = $purchaseorder->selectPurchaseorder($id);
         $organizations = $organization->getorganization($id);
-        return view('expenses/purchaseorder/list')->with(compact(['organizations','readytopurchaseorder','purchaseorders','readytoaccept','readytoacceptpay']));
+        return view('expenses/purchaseorder/list')->with(compact(['organizations','readytopurchaseorder','purchaseorders','readytoaccept','readytoacceptpay','userlevel_id']));
     }
 
     public function acceptlist(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 3){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -40,12 +40,12 @@ class purchaseorderController extends Controller
         $purchaseorder = new purchaseorder();
         $organizations = $organization->getorganization($id);
         $purchaseorders = $purchaseorder->listtoaccept($id);
-        return view('expenses/purchaseorder/accept')->with(compact(['organizations','purchaseorders']));
+        return view('expenses/purchaseorder/accept')->with(compact(['organizations','purchaseorders','userlevel_id']));
     }
 
     public function acceptprocess(Request $request,$idexpenses){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 3){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -64,7 +64,7 @@ class purchaseorderController extends Controller
 
     public function create(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 3){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -72,11 +72,11 @@ class purchaseorderController extends Controller
         $purchaseorder = new purchaseorder();
         $organizations = $organization->getorganization($id);
         $expenseslist = $purchaseorder->selectReadyToPurchaseorder($id);
-        return view('expenses/purchaseorder/create')->with(compact(['organizations','expenseslist']));
+        return view('expenses/purchaseorder/create')->with(compact(['organizations','expenseslist','userlevel_id']));
     }
     public function createPurchaseorder(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 3){
             return redirect()->action('organizationController@index');
         }
         $organization_id = $request->session()->get('organization_id');
@@ -101,7 +101,7 @@ class purchaseorderController extends Controller
 
     public function show(Request $request, $purchaseorder_id){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 3){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -111,7 +111,7 @@ class purchaseorderController extends Controller
         $purchaseorders = $purchaseorder->selectPurchaseorderAll($id,$purchaseorder_id);
         $details = $purchaseorder->selectPurchaseorderRow($id,$purchaseorder_id);
         $sums = $purchaseorder->selectSum($id,$purchaseorder_id);
-        return view('expenses/purchaseorder/show')->with(compact(['organizations','purchaseorders','details','sums']));
+        return view('expenses/purchaseorder/show')->with(compact(['organizations','purchaseorders','details','sums','userlevel_id']));
         
     }
 
@@ -124,7 +124,7 @@ class purchaseorderController extends Controller
         $details = $purchaseorder->selectPurchaseorderRow($id,$purchaseorder_id);
         $sums = $purchaseorder->selectSum($id,$purchaseorder_id);
         // share data to view
-        $pdf = PDF::loadView('expenses/purchaseorder/pdf', compact('organizations','purchaseorders','details','sums'));
+        $pdf = PDF::loadView('expenses/purchaseorder/pdf', compact('organizations','purchaseorders','details','sums','userlevel_id'));
 
         // download PDF file with download method
         return $pdf->download('purchaseorder.pdf');
@@ -143,7 +143,7 @@ class purchaseorderController extends Controller
 
     public function acceptpaylist(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 3){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -151,12 +151,12 @@ class purchaseorderController extends Controller
         $purchaseorder = new purchaseorder();
         $organizations = $organization->getorganization($id);
         $purchaseorders = $purchaseorder->listtoacceptpay($id);
-        return view('expenses/purchaseorder/acceptpay')->with(compact(['organizations','purchaseorders']));
+        return view('expenses/purchaseorder/acceptpay')->with(compact(['organizations','purchaseorders','userlevel_id']));
     }
 
     public function acceptpayprocess(Request $request,$idexpenses){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 3){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');

@@ -155,9 +155,9 @@ function preview(income_id){
                     i++;
                 }
                 var vat = netprice * 7 /100;
-                var vatable = netprice - vat;
+                var vatable = netprice ;
                 
-                $("#tbody").append("<tr><td rowspan=\"3\" colspan=\"3\">ช่องทางการชำระเงิน </td><td>VATABLE</td><td>"+numberWithCommas(vatable)+"</td></tr><tr><td>VAT 7%</td><td>"+ numberWithCommas(vat) +"</td></tr><tr><td>ราคารวมทั้งสิ้น</td><td>"+numberWithCommas(netprice)+"</td></tr>");
+                $("#tbody").append("<tr><td rowspan=\"3\" colspan=\"3\">ช่องทางการชำระเงิน </td><td>VATABLE</td><td>"+numberWithCommas(vatable)+"</td></tr><tr><td>VAT 7%</td><td>"+ numberWithCommas(vat) +"</td></tr><tr><td>ราคารวมทั้งสิ้น</td><td>"+numberWithCommas(netprice + vat)+"</td></tr>");
                 $("#modalfooter").append("<a href=\"{{url('income/invoice/')}}/"+income_id+"\" class=\"btn btn-primary mr-2\" onclick=\"return accept()\">สร้างใบวางบิล</a><button type=\"button\" class=\"btn btn-secondary cancel\" data-dismiss=\"modal\">ยกเลิก</button>")
                
               }

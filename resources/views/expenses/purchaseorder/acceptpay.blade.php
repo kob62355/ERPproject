@@ -40,8 +40,8 @@ function preview(expenses_id){
                     i++;
                 }
                 var vat = netprice * 7 /100;
-                var vatable = netprice - vat;
-                $("#tbody").append("<tr><td rowspan=\"3\" colspan=\"3\">หมายเหตุ : </td><td>VATABLE</td><td>"+numberWithCommas(vatable)+"</td></tr><tr><td>VAT 7%</td><td>"+ numberWithCommas(vat) +"</td></tr><tr><td>ราคารวมทั้งสิ้น</td><td>"+numberWithCommas(netprice)+"</td></tr>");
+                var vatable = netprice;
+                $("#tbody").append("<tr><td rowspan=\"3\" colspan=\"3\">หมายเหตุ : </td><td>VATABLE</td><td>"+numberWithCommas(vatable)+"</td></tr><tr><td>VAT 7%</td><td>"+ numberWithCommas(vat) +"</td></tr><tr><td>ราคารวมทั้งสิ้น</td><td>"+numberWithCommas(netprice + vat)+"</td></tr>");
                 $("#modalfooter").append("<a onclick=\"return accept()\" href=\"{{url('expenses/purchaseorder/acceptpay/')}}/"+expenses_id+"\" class=\"btn btn-primary mr-2\">อนุมัติการชำระเงินใบสั่งซื้อ</a><button type=\"button\" class=\"btn btn-secondary cancel\" data-dismiss=\"modal\">ยกเลิก</button>");
                 
             }

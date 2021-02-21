@@ -22,13 +22,16 @@
                 @endforeach
         <div class="my-2">
           <a href = "{{url('expenses')}}" class="mr-2 btn btn-secondary"> <i class="fa fa-arrow-left mx-2"></i> ย้อนกลับ</a>
-            <a href="{{url('expenses/purchaseorder/create')}}" style="color: white" class="btn btn-primary mr-2">+ สร้างใบสั่งซื้อ  
+          @if($userlevel_id == 1|| $userlevel_id == 4)  
+          <a href="{{url('expenses/purchaseorder/create')}}" style="color: white" class="btn btn-primary mr-2">+ สร้างใบสั่งซื้อ  
               @foreach ($readytopurchaseorder as $amount)
                 @if($amount->readytopurchaseorder > 0)
                   <span class="badge badge-danger"> {{$amount->readytopurchaseorder}} </span>
                 @endif
               @endforeach
             </a> 
+          @endif
+          @if($userlevel_id == 1 || $userlevel_id == 3)
             <a href="{{url('expenses/purchaseorder/accept')}}" class="btn btn-success mr-2">อนุมัติใบสั่งซื้อ
               @foreach ($readytoaccept as $amount)
                 @if($amount->readytoaccept > 0)
@@ -36,6 +39,8 @@
                 @endif
               @endforeach
             </a>
+          @endif
+          @if($userlevel_id == 1 || $userlevel_id == 4)
             <a href="{{url('expenses/purchaseorder/acceptpay')}}" class="btn btn-success mr-2">อนุมัติการชำระเงิน
               @foreach ($readytoacceptpay as $amount)
                 @if($amount->readytoaccept > 0)
@@ -43,6 +48,7 @@
                 @endif
               @endforeach
             </a>
+            @endif
         </div>
 
         <div class="my-2">

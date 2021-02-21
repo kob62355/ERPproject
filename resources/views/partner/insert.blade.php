@@ -21,7 +21,7 @@
         <label>ชื่อ-นามสกุล</label>
         <input type="text" name="partner_name" class="form-control my-2 col-5"> 
         <label>ที่อยู่</label>
-        <textarea name="partner_description" class="form-control my-2 col-5" rows="5"></textarea> 
+        <textarea name="partner_address" class="form-control my-2 col-5" rows="5"></textarea> 
         <label>เบอร์โทร</label>
         <input type="text" name="partner_tel" class="form-control my-2 col-5"> 
         <label>อีเมล</label>

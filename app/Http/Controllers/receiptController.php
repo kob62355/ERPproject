@@ -14,7 +14,7 @@ class receiptController extends Controller
 {
     public function index(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id = 3){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -24,11 +24,11 @@ class receiptController extends Controller
         $organizations = $organization->getorganization($id);
         $receipts = $receipt->selectReceipt($id);
         $readytoreceipt = $receipt->getReadyToReceipt($id);
-        return view('income/receipt/listreceipt')->with(compact(['organizations','receipts','readytoreceipt','readytoreceipt']));
+        return view('income/receipt/listreceipt')->with(compact(['organizations','receipts','readytoreceipt','readytoreceipt','userlevel_id']));
     }
     public function create(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id = 3){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -36,11 +36,11 @@ class receiptController extends Controller
         $receipt = new receipt();
         $ReadyToReceipt = $receipt->selectReadyToReceipt($id);
         $organizations = $organization->getorganization($id);
-        return view('income/receipt/createreceipt')->with(compact(['organizations','ReadyToReceipt']));
+        return view('income/receipt/createreceipt')->with(compact(['organizations','ReadyToReceipt','userlevel_id']));
     }
     public function createreceipt(Request $request, $income_id){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id = 3){
             return redirect()->action('organizationController@index');
         }
         $organization_id = $request->session()->get('organization_id');
@@ -62,7 +62,7 @@ class receiptController extends Controller
     }
     public function show(Request $request, $receipt_id){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id = 3){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -72,7 +72,7 @@ class receiptController extends Controller
         $receipts = $receipt->selectReceiptAll($id,$receipt_id);
         $details = $receipt->selectReceiptRow($id,$receipt_id);
         $sums = $receipt->selectSum($id,$receipt_id);
-        return view('income/receipt/showreceipt')->with(compact(['organizations','receipts','details','sums']));
+        return view('income/receipt/showreceipt')->with(compact(['organizations','receipts','details','sums','userlevel_id']));
     }
     
     public function createpdf(Request $request, $receipt_id){

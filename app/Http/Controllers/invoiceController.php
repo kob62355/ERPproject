@@ -14,7 +14,7 @@ class invoiceController extends Controller
 {
     public function index(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 2 && $userlevel_id != 3){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -23,11 +23,11 @@ class invoiceController extends Controller
         $invoices = $invoice->selectInvoice($id);
         $readytoinvoice = $invoice->getReadyToInvoice($id);
         $organizations = $organization->getorganization($id);
-        return view('income/invoice/listinvoice')->with(compact(['organizations','invoices','readytoinvoice']));
+        return view('income/invoice/listinvoice')->with(compact(['organizations','invoices','readytoinvoice','userlevel_id']));
     }
     public function create(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 3){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -35,12 +35,12 @@ class invoiceController extends Controller
         $invoice = new invoice();
         $ReadyToInvoice = $invoice->selectReadyToInvoice($id);
         $organizations = $organization->getorganization($id);
-        return view('income/invoice/createinvoice')->with(compact(['organizations','ReadyToInvoice']));
+        return view('income/invoice/createinvoice')->with(compact(['organizations','ReadyToInvoice','userlevel_id']));
     }
 
     public function createinvoice(Request $request, $income_id){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 2){
             return redirect()->action('organizationController@index');
         }
         $organization_id = $request->session()->get('organization_id');
@@ -70,7 +70,7 @@ class invoiceController extends Controller
 
     public function show(Request $request, $invoice_id){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 2 && $userlevel_id != 3){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -80,7 +80,7 @@ class invoiceController extends Controller
         $invoices = $invoice->selectInvoiceAll($id,$invoice_id);
         $details = $invoice->selectInvoiceRow($id,$invoice_id);
         $sums = $invoice->selectSum($id,$invoice_id);
-        return view('income/invoice/showinvoice')->with(compact(['organizations','invoices','details','sums']));
+        return view('income/invoice/showinvoice')->with(compact(['organizations','invoices','details','sums','userlevel_id']));
         
     }
 

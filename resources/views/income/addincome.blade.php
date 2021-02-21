@@ -6,7 +6,7 @@
 
     <div class="container mt-5 shadow p-3 mb-5 bg-white rounded">
         <div class="jumbotron text-center bg-dark text-white">
-            <h1>เพิ่มรายการรายรับ ทดลอง</h1>
+            <h1>เพิ่มรายการรายรับ</h1>
         </div>
         
       <a href = "{{url()->previous()}}" class="my-2 ml-5 btn btn-secondary"> <i class="fa fa-arrow-left mx-2"></i> ย้อนกลับ</a>

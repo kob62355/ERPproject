@@ -16,7 +16,7 @@ class userController extends Controller
         $id = $request->session()->get('organization_id');
         $organization = new organization();
         $organizations = $organization->getorganization($id);
-        return view('user/menu')->with(compact('organizations'));
+        return view('user/menu')->with(compact('organizations','userlevel_id'));
     }
 
     public function userlist(Request $request){
@@ -30,7 +30,7 @@ class userController extends Controller
         $user = new user_organization();
         $users = $user->selectlistuser($id);
         $levels = $user->getalllevel();
-        return view('user/list')->with(compact('organizations','users','levels'));
+        return view('user/list')->with(compact('organizations','users','levels','userlevel_id'));
     }
     public function insertform(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
@@ -42,7 +42,7 @@ class userController extends Controller
         $organizations = $organization->getorganization($id);
         $level = new user_organization();
         $levels = $level->getalllevel();
-        return view('user/insert')->with(compact('organizations','levels'));
+        return view('user/insert')->with(compact('organizations','levels','userlevel_id'));
     }
     public function insert(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
@@ -73,7 +73,7 @@ class userController extends Controller
         $organization = new organization();
         $organizations = $organization->getorganization($id);
         
-        return view('user/list')->with(compact('organizations','users'));
+        return view('user/list')->with(compact('organizations','users','userlevel_id'));
     } 
     public function editprocess(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
@@ -92,9 +92,10 @@ class userController extends Controller
     }   
 
     public function userdata(Request $request){
+        $userlevel_id = $request->session()->get('userlevel_id');
         $user = new User();
         $users = $user->selectuserauth();
-        return view('user/userdata')->with(compact('users'));
+        return view('user/userdata')->with(compact('users','userlevel_id'));
     }
 
     public function editdata(Request $request){

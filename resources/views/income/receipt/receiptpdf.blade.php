@@ -111,13 +111,13 @@
               </p>
             
             </td>
-            <td>VATABLE</td><td class="number">{{number_format($sum->sum - ($sum->sum * 7/100),2)}}</td>
+            <td>VATABLE</td><td class="number">{{number_format($sum->sum,2)}}</td>
             </tr>
             <tr>
                 <td>VAT 7%</td><td class="number">{{number_format($sum->sum * 7/100,2)}}</td>
             </tr>
             <tr>
-              <td>ราคารวมทั้งสิ้น</td><td class="number">{{number_format($sum->sum,2)}}</td>
+              <td>ราคารวมทั้งสิ้น</td><td class="number">{{number_format($sum->sum + ($sum->sum * 7/100),2)}}</td>
         </tr>
           @endforeach
         </tbody>

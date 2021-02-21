@@ -15,7 +15,7 @@ class expensesController extends Controller
 {
     public function index(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id !=3 && $userlevel_id != 4){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -25,12 +25,12 @@ class expensesController extends Controller
         $readytopurchaseorder = $purchaseorder->getreadytopurchaseorder($id);
         $readytoacceptpurchaseorder = $purchaseorder->getreadytoaccept($id);
         $readytoacceptpurchaseorderpay = $purchaseorder->getreadytoacceptpay($id);
-        return view('expenses/menu')->with(compact('organizations','readytopurchaseorder','readytoacceptpurchaseorder','readytoacceptpurchaseorderpay'));
+        return view('expenses/menu')->with(compact('organizations','readytopurchaseorder','readytoacceptpurchaseorder','readytoacceptpurchaseorderpay','userlevel_id'));
     }
     public function insert(Request $request){
         
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 4){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -40,11 +40,11 @@ class expensesController extends Controller
         $products = $product->select($id);
         $partner = new partner();
         $partners = $partner->select($id);
-        return view('expenses/addexpenses')->with(compact(['organizations','products','partners']));
+        return view('expenses/addexpenses')->with(compact(['organizations','products','partners','userlevel_id']));
     }
     public function list(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 4){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -52,11 +52,11 @@ class expensesController extends Controller
         $organizations = $organization->getorganization($id);
         $expenses = new expenses();
         $expensess = $expenses->select($id);
-        return view('expenses/list')->with(compact(['organizations','expensess']));
+        return view('expenses/list')->with(compact(['organizations','expensess','userlevel_id']));
     }
     public function store(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 4){
             return redirect()->action('organizationController@index');
         }
         $data = request()->validate([
@@ -100,7 +100,7 @@ class expensesController extends Controller
 
     public function update(Request $request , $idexpenses){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 4){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -113,12 +113,12 @@ class expensesController extends Controller
         $expenses = new expenses();
         $expensess = $expenses->getdata($id,$idexpenses);
         $expenses_partner = $expenses->getpartner($id,$idexpenses);
-        return view('expenses/update')->with(compact(['organizations','products','partners','expensess','expenses_partner']));
+        return view('expenses/update')->with(compact(['organizations','products','partners','expensess','expenses_partner','userlevel_id']));
     }
 
     public function updatedo(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 4){
             return redirect()->action('organizationController@index');
         }
         $data = request()->validate([

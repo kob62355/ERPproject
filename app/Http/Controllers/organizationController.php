@@ -16,14 +16,14 @@ class organizationController extends Controller
 {
     public function index(Request $request){
         $organization = new organization();
-        $data = $organization->select();
-        return view('organization/home')->with('organizations',$data);
+        $organizations = $organization->select();
+        return view('organization/home')->with(compact(['organizations']));
     }
     public function menu(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
-            return redirect()->action('organizationController@index');
-        }
+        // if($userlevel_id != 1){
+        //     return redirect()->action('organizationController@index');
+        // }
         $id = $request->session()->get('organization_id');
         $income = new income();
         $quotation = new quotation();
@@ -40,7 +40,7 @@ class organizationController extends Controller
         $readytopurchaseorder = $purchaseorder->getreadytopurchaseorder($id);
         $readytoacceptpurchaseorder = $purchaseorder->getreadytoaccept($id);
         $readytoacceptpurchaseorderpay = $purchaseorder->getreadytoacceptpay($id);
-        return view('organization/main')->with(compact(['organizations','readytoquotation','readytoaccept','readytoinvoice','readytoreceipt','readytopurchaseorder','readytoacceptpurchaseorder','readytoacceptpurchaseorderpay']));
+        return view('organization/main')->with(compact(['organizations','readytoquotation','readytoaccept','readytoinvoice','readytoreceipt','readytopurchaseorder','readytoacceptpurchaseorder','readytoacceptpurchaseorderpay','userlevel_id']));
     }
 
     public function main(Request $request,$id)
@@ -52,14 +52,10 @@ class organizationController extends Controller
         foreach ($user_levels as $user_level) {
             $level = $user_level->userlevel_id;
         }
-        if($level == 1){
-            $request->session()->put('userlevel_id',$level);
-            return redirect()->action('organizationController@menu');
-        }
-        if($level == 2){
-            $request->session()->put('userlevel_id',$level);
-            return redirect()->action('saleController@index');
-        }
+        $request->session()->put('userlevel_id',$level);
+        return redirect()->action('organizationController@menu');
+        
+       
         
        
     }
@@ -107,7 +103,7 @@ class organizationController extends Controller
         $id = $request->session()->get('organization_id');
         $organization = new organization();
         $organizations = $organization->getorganization($id);
-        return view('organization/settings/edit')->with(compact(['organizations']));
+        return view('organization/settings/edit')->with(compact(['organizations','userlevel_id']));
     }
 
     public function editdo(Request $request){

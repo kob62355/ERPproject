@@ -42,7 +42,7 @@
     <p style="text-align: center; font-size:24px;" class="mt-5"><b>{{$organization->organization_name}}</b></p>
     <p style="text-align: center; font-size:18px" class="mt-2">{{$organization->organization_address}}</p>
     @endforeach
-    <p class="mt-5" style="text-align: center; font-size: 20px"><b>ใบเสนอราคา</b></p>
+    <p class="mt-5" style="text-align: center; font-size: 20px"><b>ใบสั่งขาย</b></p>
     <table class="table table-bordered mt-4">
         <tr>
             <td>
@@ -55,7 +55,7 @@
             </td>
             <td>
                 @foreach ($details as $detail)
-                <p style="font-size: 16px">หมายเลขใบเสนอราคา : {{$detail->qt_id}} </p>
+                <p style="font-size: 16px">หมายเลขใบสั่งขาย : {{$detail->qt_id}} </p>
                 <p style="font-size: 16px">วันที่ : {{date('d-m-Y', strtotime($detail->created_at))}} </p>
                 @endforeach
             </td>
@@ -88,13 +88,13 @@
           @endforeach
           @foreach ($sums as $sum)
           <tr>
-            <td rowspan="3" colspan="3">หมายเหตุ : {{$sum->detail}} </td><td>VATABLE</td><td class="number">{{number_format($sum->sum - ($sum->sum * 7/100),2)}}</td>
+            <td rowspan="3" colspan="3">หมายเหตุ : {{$sum->detail}} </td><td>VATABLE</td><td class="number">{{number_format($sum->sum,2)}}</td>
             </tr>
             <tr>
                 <td>VAT 7%</td><td class="number">{{number_format($sum->sum * 7/100,2)}}</td>
             </tr>
             <tr>
-              <td>ราคารวมทั้งสิ้น</td><td class="number">{{number_format($sum->sum,2)}}</td>
+              <td>ราคารวมทั้งสิ้น</td><td class="number">{{number_format($sum->sum + ($sum->sum * 7/100),2)}}</td>
         </tr>
           @endforeach
         </tbody>

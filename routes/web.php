@@ -106,9 +106,12 @@ Route::post('organization/settings/edit','organizationController@editdo');
 
 
 Route::get('report/profit','reportController@profit');
+Route::get('report/line','reportController@lineReport');
 Route::get('report/profit/1month','reportController@profit1month');
 Route::get('report/profit/3month','reportController@profit3month');
-
+Route::get('report/profit/custom','reportController@profitcustom');
+Route::get('report/tax','reportController@tax');
+Route::post('report/profit/custom','reportController@profitcustomshow');
 Route::get('sale','saleController@index');
 
 

@@ -10,14 +10,18 @@ class partnerController extends Controller
 {
     public function index(Request $request){
         $id = $request->session()->get('organization_id');
+        $userlevel_id = $request->session()->get('userlevel_id');
+        if($userlevel_id != 1 && $userlevel_id != 2 && $userlevel_id != 4 && $userlevel_id != 5){
+            return redirect()->action('organizationController@index');
+        }
         $organization = new organization();
         $organizations = $organization->getorganization($id);
-        return view('partner/menu')->with(compact('organizations'));
+        return view('partner/menu')->with(compact('organizations','userlevel_id'));
     }
 
     public function list(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 2 && $userlevel_id != 4 && $userlevel_id != 5){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -25,24 +29,26 @@ class partnerController extends Controller
         $organizations = $organization->getorganization($id);
         $partner = new partner();
         $partners = $partner->select($id);
-        return view('partner/list')->with(compact('organizations','partners'));
+        return view('partner/list')->with(compact('organizations','partners','userlevel_id'));
     }
 
     public function insertform(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 2 && $userlevel_id != 4 ){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
         $organization = new organization();
         $organizations = $organization->getorganization($id);
-        return view('partner/insert')->with(compact('organizations'));
+        return view('partner/insert')->with(compact('organizations','userlevel_id'));
     }
 
    
     public function insert(Request $request){
+        
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 2 && $userlevel_id != 4 ){
+           
             return redirect()->action('organizationController@index');
         }
         request()->validate([
@@ -50,10 +56,11 @@ class partnerController extends Controller
             'partner_address' => 'required'
         ]);
         $partner_name = request()->input('partner_name');
+        
         $partner_address = request()->input('partner_address');
         $partner_tel = request()->input('partner_tel');
         $partner_email = request()->input('partner_email');
-        $organization_id = $request->session()->get('organization_id');
+        $organization_id = $request->session()->get('organization_id','userlevel_id');
         $partner = new partner();
         $data = $partner->selectlastid($organization_id);
         if($data){
@@ -65,12 +72,12 @@ class partnerController extends Controller
         else{
             $lastid = 1; 
         }
-        $partner->insert($lastid,$organization_id,$partner_name,$partner_description,$partner_tel,$partner_email);
+        $partner->insert($lastid,$organization_id,$partner_name,$partner_address ,$partner_tel,$partner_email);
         return redirect('partner/list/');
     }
     public function edit(Request $request , $idpartner){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 2 && $userlevel_id != 4 ){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -78,11 +85,11 @@ class partnerController extends Controller
         $organizations = $organization->getorganization($id);
         $partner = new partner();
         $partners = $partner->selectwithid($id,$idpartner);
-        return view('partner/update')->with(compact(['organizations','partners']));
+        return view('partner/update')->with(compact(['organizations','partners','userlevel_id']));
     }
     public function updatedo(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1){
+        if($userlevel_id != 1 && $userlevel_id != 2 && $userlevel_id != 4 ){
             return redirect()->action('organizationController@index');
         }
         $organization_id = $request->session()->get('organization_id');

@@ -8,8 +8,12 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
+                        @if($userlevel_id == 1 || $userlevel_id == 2 || $userlevel_id == 4)
                         <a href="{{ url('partner/insert') }}" class="btn btn-dark py-4" style="width: 100%;font-size: 24px">เพิ่มผู้ติดต่อ</a>
+                        @endif
+                        @if($userlevel_id == 1 || $userlevel_id == 2 || $userlevel_id == 4 || $userlevel_id == 5)
                         <a href="{{ url('partner/list/')}}" class="btn btn-dark mt-3 py-4" style="width: 100%;font-size: 24px">รายชื่อผู้ติดต่อ</a>
+                        @endif
                     </div>
                     <div class="col">
                         <img src="{{url('/images/partner.png')}}" style="width: 100%">

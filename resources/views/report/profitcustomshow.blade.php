@@ -18,15 +18,17 @@
               <a class="nav-link" href="{{url('report/profit/')}}">ทั้งหมด</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="{{url('report/profit/1month')}}">เดือนที่ผ่านมา</a>
+              <a class="nav-link" href="{{url('report/profit/1month')}}">เดือนที่ผ่านมา</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{url('report/profit/3month')}}">3 เดือน</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{url('report/profit/custom')}}">กำหนดเอง</a>
+              <a class="nav-link active" href="{{url('report/profit/custom')}}">กำหนดเอง</a>
             </li>
           </ul>
+
+        @if($incomes && $expensess)
         <div class="mx-5 mt-5">
         <h1 style="text-align: center">งบกำไรขาดทุน</h1>
         <p style="text-align: left;font-size: 18px;" ><b>รายได้</b></p>
@@ -43,7 +45,7 @@
 
         </div>
         
-        
+        @endif
 
     </div>
 

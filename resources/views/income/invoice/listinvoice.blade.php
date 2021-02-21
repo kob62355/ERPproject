@@ -14,13 +14,14 @@
         
         <div class="my-2">
             <a href = "{{url('income/')}}" class="my-2 mr-2 btn btn-secondary"> <i class="fa fa-arrow-left mx-2"></i> ย้อนกลับ</a>
-            <a href="{{url('income/invoice/create')}}" style="color: white" class="btn btn-primary mr-2">+ สร้างใบวางบิล 
+            @if($userlevel_id == 1 || $userlevel_id == 3)<a href="{{url('income/invoice/create')}}" style="color: white" class="btn btn-primary mr-2">+ สร้างใบวางบิล 
                 @foreach ($readytoinvoice as $amount)
                 @if($amount->readytoinvoice > 0)
                   <span class="badge badge-danger"> {{$amount->readytoinvoice}} </span>
                 @endif
               @endforeach
-            </a> 
+            </a>
+            @endif 
             
         </div>
 
