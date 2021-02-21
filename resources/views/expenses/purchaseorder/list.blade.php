@@ -40,7 +40,7 @@
               @endforeach
             </a>
           @endif
-          @if($userlevel_id == 1 || $userlevel_id == 4)
+          @if($userlevel_id == 1 || $userlevel_id == 3)
             <a href="{{url('expenses/purchaseorder/acceptpay')}}" class="btn btn-success mr-2">อนุมัติการชำระเงิน
               @foreach ($readytoacceptpay as $amount)
                 @if($amount->readytoaccept > 0)

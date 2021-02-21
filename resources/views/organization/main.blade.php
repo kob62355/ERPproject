@@ -62,7 +62,7 @@
                         <div class="row">
                             <div class="col">
                                 @if($userlevel_id == 1 || $userlevel_id == 4)<a href="{{ url('expenses/list') }}" class="btn btn-dark" style="width: 100%;">รายการรายจ่าย</a>@endif
-                                @if($userlevel_id == 1 || $userlevel_id == 3)
+                                @if($userlevel_id == 1 || $userlevel_id == 3 || $userlevel_id == 4)
                                 <a href="{{ url('expenses/purchaseorder/list')}}" class="btn btn-dark mt-2" style="width: 100%">ใบสั่งซื้อ
                                     @foreach ($readytopurchaseorder as $amountpurchaseorder)
                                     @foreach ($readytoacceptpurchaseorder as $amountaccept)
@@ -86,14 +86,14 @@
             
        
      
-                @if($userlevel_id == 1 || $userlevel_id == 4)
+                @if($userlevel_id == 1 || $userlevel_id == 4 || $userlevel_id == 5)
                 <div class="card text-dark bg-light mb-3" style="width: 48.5%;float: left;margin-left: 5px; margin-right: 5px;">
                     <h3 class="card-header">สินค้า</h3>
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
-                                <a href="{{ url('product/insert') }}" class="btn btn-dark" style="width: 100%;">เพิ่มสินค้า</a>
-                                <a href="{{ url('product/stock/')}}" class="btn btn-dark mt-2" style="width: 100%;">รายการสินค้าคงเหลือ</a>
+                                @if($userlevel_id == 1 || $userlevel_id == 4)<a href="{{ url('product/insert') }}" class="btn btn-dark" style="width: 100%;">เพิ่มสินค้า</a>@endif
+                                @if($userlevel_id == 1 || $userlevel_id == 4 || $userlevel_id == 5)<a href="{{ url('product/stock/')}}" class="btn btn-dark mt-2" style="width: 100%;">รายการสินค้าคงเหลือ</a>@endif
                             </div>
                             <div class="col">
                                 <img src="{{url('/images/product.png')}}" style="width: 100%">
@@ -103,7 +103,7 @@
                 </div>
                 @endif
             
-                @if($userlevel_id == 1 || $userlevel_id == 2 || $userlevel_id == 4)
+                @if($userlevel_id == 1 || $userlevel_id == 2 || $userlevel_id == 4 )
                 <div class="card text-dark bg-light mb-3" style="width: 48.5%;float: left;margin-left: 5px; margin-right: 5px;">
                     <h3 class="card-header">ผู้ติดต่อ</h3>
                     <div class="card-body">
@@ -128,7 +128,7 @@
                         <div class="row">
                             <div class="col">
                                 <a href="{{ url('report/profit') }}" class="btn btn-dark" style="width: 100%;">งบกำไร - ขาดทุน</a>
-                                <a href="{{ url('report/profit') }}" class="btn btn-dark mt-2" style="width: 100%;">รายการภาษี</a>
+                                <!--<a href="{{ url('report/profit') }}" class="btn btn-dark mt-2" style="width: 100%;">รายการภาษี</a>!-->
                             </div>
                             <div class="col">
                                 <img src="{{url('/images/report.png')}}" style="width: 100%">

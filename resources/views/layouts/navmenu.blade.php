@@ -36,7 +36,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               @if($userlevel_id == 1 || $userlevel_id == 4)<a class="dropdown-item" href="{{url("expenses/list")}}">รายการรายจ่าย</a>@endif
-              @if($userlevel_id == 1 || $userlevel_id == 3)<a class="dropdown-item" href="{{url("expenses/purchaseorder/list")}}">ใบสั่งซื้อ</a>@endif
+              @if($userlevel_id == 1 || $userlevel_id == 3 || $userlevel_id == 4)<a class="dropdown-item" href="{{url("expenses/purchaseorder/list")}}">ใบสั่งซื้อ</a>@endif
           </li>
           @endif
 
@@ -51,14 +51,14 @@
           </li>
           @endif
 
-          @if($userlevel_id == 1 || $userlevel_id == 4)
+          @if($userlevel_id == 1 || $userlevel_id == 4 || $userlevel_id == 5)
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                 สินค้า
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{url("product/insert")}}"><i class="fa fa-plus mr-2" aria-hidden="true"></i>เพิ่มสินค้า</a>
-                <a class="dropdown-item" href="{{url("product/stock")}}">รายการสินค้า</a>
+                @if($userlevel_id == 1 || $userlevel_id == 4)<a class="dropdown-item" href="{{url("product/insert")}}"><i class="fa fa-plus mr-2" aria-hidden="true"></i>เพิ่มสินค้า</a>@endif
+                @if($userlevel_id == 1 || $userlevel_id == 4 || $userlevel_id == 5)<a class="dropdown-item" href="{{url("product/stock")}}">รายการสินค้า</a>@endif
           </li>
           @endif
          
@@ -73,7 +73,7 @@
           </li>
           @endif
 
-          @if($userlevel_id == 1 || $userlevel_id == 5)
+          @if($userlevel_id == 1 )
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                 จัดการ
