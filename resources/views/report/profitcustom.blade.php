@@ -11,7 +11,7 @@
         </div>
         
         <div class="my-2">
-          <a href = "{{url('organization/menu')}}" class="my-2 ml-5 btn btn-secondary"> <i class="fa fa-arrow-left mx-2"></i> ย้อนกลับ</a>
+          <a href = "{{url('organization/menu')}}" class="my-2 btn btn-secondary"> <i class="fa fa-arrow-left mx-2"></i> ย้อนกลับ</a>
         </div>
         <ul class="nav nav-tabs">
             <li class="nav-item">
@@ -21,7 +21,7 @@
               <a class="nav-link" href="{{url('report/profit/1month')}}">เดือนที่ผ่านมา</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{url('report/profit/3month')}}">3 เดือน</a>
+              <a class="nav-link" href="{{url('report/profit/3month')}}">ไตรมาส</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" href="{{url('report/profit/custom')}}">กำหนดเอง</a>

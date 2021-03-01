@@ -64,7 +64,7 @@ class purchaseorderController extends Controller
 
     public function create(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1 && $userlevel_id != 3){
+        if($userlevel_id != 1 && $userlevel_id != 3 && $userlevel_id != 4){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -76,7 +76,7 @@ class purchaseorderController extends Controller
     }
     public function createPurchaseorder(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1 && $userlevel_id != 3){
+        if($userlevel_id != 1 && $userlevel_id != 3 && $userlevel_id != 4){
             return redirect()->action('organizationController@index');
         }
         $organization_id = $request->session()->get('organization_id');
@@ -101,7 +101,7 @@ class purchaseorderController extends Controller
 
     public function show(Request $request, $purchaseorder_id){
         $userlevel_id = $request->session()->get('userlevel_id');
-        if($userlevel_id != 1 && $userlevel_id != 3){
+        if($userlevel_id != 1 && $userlevel_id != 3 && $userlevel_id != 4){
             return redirect()->action('organizationController@index');
         }
         $id = $request->session()->get('organization_id');
@@ -124,7 +124,7 @@ class purchaseorderController extends Controller
         $details = $purchaseorder->selectPurchaseorderRow($id,$purchaseorder_id);
         $sums = $purchaseorder->selectSum($id,$purchaseorder_id);
         // share data to view
-        $pdf = PDF::loadView('expenses/purchaseorder/pdf', compact('organizations','purchaseorders','details','sums','userlevel_id'));
+        $pdf = PDF::loadView('expenses/purchaseorder/pdf', compact('organizations','purchaseorders','details','sums'));
 
         // download PDF file with download method
         return $pdf->download('purchaseorder.pdf');

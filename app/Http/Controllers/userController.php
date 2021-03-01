@@ -94,7 +94,7 @@ class userController extends Controller
     public function userdata(Request $request){
         $userlevel_id = $request->session()->get('userlevel_id');
         $user = new User();
-        $users = $user->selectuserauth();
+        $users = $user-we>selectuserauth();
         return view('user/userdata')->with(compact('users','userlevel_id'));
     }
 
@@ -115,6 +115,18 @@ class userController extends Controller
         $user = new User();
         $user->updatedo($user_id,$user_name,$user_email,$user_tel);
         return redirect()->action('userController@userdata');
+
+    }
+
+    public function delete(Request $request,$user_id){
+        $userlevel_id = $request->session()->get('userlevel_id');
+        if($userlevel_id != 1){
+            return redirect()->action('organizationController@index');
+        }
+        $organization_id = $request->session()->get('organization_id');
+        $user = new User();
+        $user->deleterole($organization_id,$user_id);
+        return redirect()->action('userController@userlist');
 
     }
 

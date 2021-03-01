@@ -11,7 +11,7 @@
         </div>
         
         <div class="my-2">
-          <a href = "{{url('organization/menu')}}" class="my-2 ml-5 btn btn-secondary"> <i class="fa fa-arrow-left mx-2"></i> ย้อนกลับ</a>
+          <a href = "{{url('organization/menu')}}" class="my-2 btn btn-secondary"> <i class="fa fa-arrow-left mx-2"></i> ย้อนกลับ</a>
         </div>
         <ul class="nav nav-tabs">
             <li class="nav-item">
@@ -21,28 +21,46 @@
               <a class="nav-link" href="{{url('report/profit/1month')}}">เดือนที่ผ่านมา</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="{{url('report/profit/3month')}}">3 เดือน</a>
+              <a class="nav-link active" href="{{url('report/profit/3month')}}">ไตรมาส</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{url('report/profit/custom')}}">กำหนดเอง</a>
             </li>
           </ul>
         <div class="mx-5 mt-5">
-        <h1 style="text-align: center">งบกำไรขาดทุน</h1>
-        <p style="text-align: center;font-size: 18px;">@foreach ($organizations as $organization){{$organization->organization_name}} @endforeach</p>
-        <p style="text-align: center;font-size: 18px;">{{date('d-m-Y', strtotime($Begin))}} ถึง {{date('d-m-Y', strtotime($End))}}</p>
-        <p style="text-align: left;font-size: 18px;" ><b>รายได้</b></p>
-        <div class="row">
-            <div class="col-6"><label style="text-align: left;font-size: 18px;" class="ml-5" >รายได้จากการขาย</label></div><div class="col-3"></div><div class="col-3"><label style="text-align: right;font-size: 18px;float: right; ">@foreach ($incomes as $income){{number_format($income->sumincome)}}@endforeach</label></div>
-        </div>
-        <p style="text-align: left;font-size: 18px;" ><b>ค่าใช้จ่าย</b></p>
-        <div class="row">
-            <div class="col-6"><label style="text-align: left;font-size: 18px;" class="ml-5" >ต้นทุนขาย</label></div><div class="col-3"><label style="text-align: right;font-size: 18px;float: right; ">@foreach ($expensess as $expenses){{number_format($expenses->sumexpenses)}}@endforeach</label></div><div class="col-3"></div>
-        </div>
-        <div class="row">
-            <div class="col-6"><label style="text-align: left;font-size: 18px;" ><b>กำไรสุทธิ</b></label></div><div class="col-3"></div><div class="col-3"><label style="text-align: right;font-size: 18px;float: right; ">@foreach ($incomes as $income) @foreach ($expensess as $expenses){{number_format($income->sumincome - $expenses->sumexpenses)}}@endforeach @endforeach</label></div>
-        </div>
-
+      
+       
+        <div class="mx-5 my-3 card">
+          <div class="card-header">
+              <h5>กำหนดไตรมาส</h2>
+          </div>
+          <div class="card-body">
+          <form method="POST" action="{{url('report/profit/quarter')}}" class="mx-5">
+              @csrf
+            <div class="row">
+              <div class="col">
+              <label>ไตรมาส </label>
+         
+              <input class="ml-2" type="radio" value="1" name="quarter"><label class="ml-2">1</label>
+              <input class="ml-2" type="radio" value="2" name="quarter"><label class="ml-2">2</label>
+              <input class="ml-2" type="radio" value="3" name="quarter"><label class="ml-2">3</label>
+              <input class="ml-2" type="radio" value="4" name="quarter"><label class="ml-2">4</label>
+              </div>
+              <div class="col">
+              <div class="form-group row">
+              <label class="ml-2 col-form-label">ปี</label>
+              <div class="col">
+              <input class="ml-2 form-control" type="number" name="year">
+              </div>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+              <input type="submit" name="submit" style="float: right" value="ยืนยัน" class="btn btn-primary">
+          </div>
+      </form>
+      </div>
         </div>
         
         
@@ -50,11 +68,10 @@
     </div>
 
      
-
     <script>
         $(document).ready(function(){
           $('#example').DataTable();
-       
+          
         });
      
     </script>

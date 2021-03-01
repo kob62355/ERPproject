@@ -9,8 +9,6 @@
         <div class="jumbotron text-center bg-dark text-white">
             <h1>รายชื่อผู้ใช้งาน</h1>
         </div>
-
-
         
         <div class="my-2">
             <a href = "{{url('settings/')}}" class="my-2 mr-2 btn btn-secondary"> <i class="fa fa-arrow-left mx-2"></i> ย้อนกลับ</a>
@@ -36,7 +34,15 @@
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->tel}}</td>
-                    <td><div class="row"><div class="col">{{$user->level_name}} </div><div class="col"><button type="button" class="btn btn-secondary ml-4" onclick="edit({{$user->user_id}},{{$user->level_id}})" data-toggle="modal" data-target="#ModalEdit"><i class="fa fa-edit mr-2" aria-hidden="true"></i>แก้ไข</button><button type="button" class="btn btn-danger ml-2 " ><i class="fa fa-trash mr-2" aria-hidden="true"></i>ลบ</button></div></td>
+                    <td><div class="row"><div class="col">{{$user->level_name}} </div>
+                      <div class="col">
+                        @if($user->userlevel_id != 1)
+                        <button type="button" class="btn btn-secondary ml-4" onclick="edit({{$user->user_id}},{{$user->level_id}})" data-toggle="modal" data-target="#ModalEdit"><i class="fa fa-edit mr-2" aria-hidden="true"></i>แก้ไข</button>
+                        <button type="button" class="btn btn-danger ml-2" onclick="location.href='{{url('user/delete/'.$user->user_id.'')}}'" >
+                        <i class="fa fa-trash mr-2" aria-hidden="true"></i>ลบ</button>
+                        @endif
+                    </div>
+                  </td>
                     
                     </tr>
                     @endforeach 

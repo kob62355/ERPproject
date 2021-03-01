@@ -22,6 +22,12 @@ class User extends Authenticatable
         DB::connection('mysql')->update("UPDATE users SET name = ? , email = ? , tel = ? ,updated_at = ? WHERE id = ?;",[$user_name,$user_email,$user_tel,$uinxTimeStamp,$user_id]);
     }
 
+    public function deleterole($organization_id,$user_id)
+    {
+        
+        DB::connection('mysql')->delete("DELETE FROM user_organization WHERE organization_id = ? AND user_id = ?;",[$organization_id,$user_id]);
+    }
+
     use Notifiable;
 
     /**
